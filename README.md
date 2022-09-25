@@ -1,3 +1,6 @@
+# Note Taker
+[Deployed](https://note-taker-haw.herokuapp.com/)
+
 ## Description
 - Note taking app to save new notes, view and delete old notes from json file.
 
@@ -22,7 +25,6 @@
 - WHEN I click on the Write icon in the navigation at the top of the page
 - THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
 
-[GitPages](https://hunter-williams.github.io/note-taker/)
 ![Active Notes](./notescreenshot.png)
 
 
