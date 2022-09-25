@@ -27,16 +27,13 @@ app.use(express.json());
 
 
 
-// routes
+// == routes ==
     // html routes
-    // index
+// index
 app.get('/', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/index.html'))
   );
-
-
-
-  // notes
+// notes
 app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/notes.html'))
   );
@@ -84,11 +81,28 @@ app.route("/api/notes").post(function(req, res){
 
 // delete bonus
 // delete api/notes/:id
+app.route("/api/notes/:id").delete(function(req, res){
+    console.log('Delete Request Id:', req.params.id);
     // for loop / search for id
-        // if id == serach param id then splice from array (delte)
+    for (let i=0; i<database.length; i++){
+        console.log(database[i])
+        // if id == search param id then splice from array (delete)
+        if(database[i].id === req.params.id){
+            database.splice(i,1);    // array.splice(start, delete count)
+        }
+    }
     // write new json db file (update)
+    fs.writeFile(jsonFile,JSON.stringify(database), function(err){
+        if(err){
+            return console.log(err)
+        }else{
+            console.log('bye.')
+        }
+    })
     // res json db
-
+    res.json(database)
+    
+})
     
 app.get('*', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/index.html'))
